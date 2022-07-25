@@ -1,0 +1,25 @@
+{
+  "name": "@growing-web-examples/app-403",
+  "version": "0.0.6",
+  "exports": {
+    ".": "./dist/main.js"
+  },
+  "main": "dist/main.js",
+  "module": "dist/main.js",
+  "files": [
+    "./entry.html",
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm web-builder build --no-clean",
+    "dev:serve": "web-dev-server --app-index entry.html"
+  },
+  "dependencies": {
+    "@growing-web-examples/basic-layout": "workspace:*",
+    "@growing-web/bootstrap": "^0.0.6"
+  },
+  "devDependencies": {
+    "@web-widget/container": "^0.0.23",
+    "@web/dev-server": "^0.1.32"
+  }
+}

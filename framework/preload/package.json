@@ -1,0 +1,11 @@
+{
+  "name": "@framework/preload",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./dist/index.cjs"
+  },
+  "dependencies": {
+    "electron-better-ipc": "^2.0.1",
+    "vite-config": "workspace:*"
+  }
+}

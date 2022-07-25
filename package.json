@@ -1,0 +1,38 @@
+{
+  "name": "growing-web-electron-examples-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [],
+  "license": "ISC",
+  "author": "shisan@gaoding.com",
+  "main": "framework/main/dist/index.cjs",
+  "scripts": {
+    "build:apps": "turbo run build && pnpm --filter=@scripts/main run generate:html",
+    "prebuild": "npm run build:framework",
+    "build": "electron-builder build",
+    "build:packages": "esno scripts/build.ts",
+    "build:framework": "pnpm --filter=@scripts/main run build",
+    "clean": "npm run clean:apps && npm run clean:packages && rimraf node_modules",
+    "clean:apps": "rimraf 'apps/**/{dist,node_modules,.turbo}'",
+    "clean:packages": "rimraf 'packages/**/{dist,node_modules,.turbo}'",
+    "clean:framework": "rimraf 'framework/**/{dist,node_modules,.turbo}'",
+    "dev": "pnpm --filter=@scripts/main run dev",
+    "dts:renderer": "dts-cb -i framework/preload/src/**/*.ts -o types/exposed-in-main-world.d.ts",
+    "postinstall": "pnpm -r run stub"
+  },
+  "devDependencies": {
+    "@growing-web/web-builder": "0.1.2",
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^18.0.6",
+    "cross-env": "^7.0.3",
+    "dts-for-context-bridge": "^0.7.1",
+    "electron": "^19.0.8",
+    "electron-builder": "^23.3.2",
+    "esno": "^0.16.3",
+    "fs-extra": "^10.1.0",
+    "tsconfig": "workspace:*",
+    "turbo": "^1.3.3",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.2"
+  }
+}

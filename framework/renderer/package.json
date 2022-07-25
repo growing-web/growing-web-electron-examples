@@ -1,0 +1,15 @@
+{
+  "name": "@framework/renderer",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./dist/index.cjs"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.1",
+    "vite": "^3.0.2",
+    "vite-config": "workspace:*"
+  }
+}

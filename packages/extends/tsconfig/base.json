@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Base",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["DOM", "ESNext"],
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "strictFunctionTypes": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "isolatedModules": true,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "renderer/*": ["packages/renderer/src/*"],
+      "common/*": ["packages/common/*"],
+      "main/*": ["packages/main/src/*"],
+      "preload/*": ["packages/preload/src/*"]
+    }
+  },
+
+  "exclude": ["**/node_modules/**", "**/dist/**"]
+}

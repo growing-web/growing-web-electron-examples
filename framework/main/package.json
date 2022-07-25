@@ -1,0 +1,14 @@
+{
+  "name": "@framework/main",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./dist/index.cjs"
+  },
+  "devDependencies": {
+    "vite-config": "workspace:*"
+  },
+  "dependencies": {
+    "electron-better-ipc": "^2.0.1",
+    "get-port-please": "^2.5.0"
+  }
+}
