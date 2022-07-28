@@ -1,6 +1,5 @@
 import { app, BrowserWindow, BrowserView } from 'electron'
 import { join } from 'path'
-import { createAppServer } from './createServer'
 import { apps } from './apps'
 import { ipcMain } from 'electron-better-ipc'
 
@@ -45,9 +44,7 @@ async function createWindow() {
 
   win.loadURL(HTML_URL)
 
-  const { port } = await createAppServer()
-
-  await initApps(port, win)
+  await initApps(win)
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
@@ -55,26 +52,32 @@ async function createWindow() {
   })
 }
 
-async function createBrowserView(
-  url: string,
-  port: number,
-  window: BrowserWindow,
-) {
+async function createBrowserView(url: string, window: BrowserWindow) {
   const view = new BrowserView()
   window.addBrowserView(view)
   const [width, height] = window.getSize()
   view.setBounds({ x: 0, y: 32, width: width, height: height })
   view.setAutoResize({ width: true, height: true })
 
-  view.webContents.loadURL(`http://127.0.0.1:${port}/${url}`)
+  //   const HTML_URL =
+  //     __DEV__ && __DEV_SERVER_URL__
+  //       ? __DEV_SERVER_URL__
+  //       : new URL(
+  //           `../../apps/renderer/dist/index.html`,
+  //           'file://' + __dirname,
+  //         ).toString()
+
+  view.webContents.loadURL(
+    new URL(`../../apps/${url}.html`, 'file://' + __dirname).toString(),
+  )
   return view
 }
 
-async function initApps(port: number, window: BrowserWindow) {
+async function initApps(window: BrowserWindow) {
   for (const app of apps) {
     viewList.push({
       url: app.url,
-      view: await createBrowserView(app.url, port, window),
+      view: await createBrowserView(app.url, window),
     })
   }
 }

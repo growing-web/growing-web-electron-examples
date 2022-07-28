@@ -1,6 +1,6 @@
 import { resolve } from 'resolve.exports'
-import { getApps, rootDit } from '../../utils'
-import { dirname, join, relative } from 'path'
+import { getApps } from '../../utils'
+import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { minify } from 'html-minifier-terser'
 import fs from 'fs-extra'
@@ -9,7 +9,7 @@ export function createRouteMap(importName: string, dir: string) {
   return {
     routes: [
       {
-        path: `/${dir}/entry`,
+        path: `*`,
         element: 'web-widget',
         attributes: {
           import: importName,
@@ -55,7 +55,7 @@ function generate() {
     apps.map(async (app) => {
       const __dirname = dirname(fileURLToPath(import.meta.url))
       const template = fs.readFileSync(`${__dirname}/template.html`, 'utf8')
-      const dir = relative(`${rootDit}/apps`, app.dir)
+      const dir = app.dir
       const html = transformFragment(template, {
         get importmap() {
           const importmap = createImportMap(app.packageJson, dir)

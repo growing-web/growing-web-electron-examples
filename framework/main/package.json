@@ -8,7 +8,6 @@
     "vite-config": "workspace:*"
   },
   "dependencies": {
-    "electron-better-ipc": "^2.0.1",
-    "get-port-please": "^2.5.0"
+    "electron-better-ipc": "^2.0.1"
   }
 }
